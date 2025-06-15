@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>PDF to Word Converter | Free Online Tools</title>
+<meta name="description" content="Convert your PDFs to editable Word documents online quickly and for free." />
+<meta name="keywords" content="pdf to word, pdf converter, word converter, free online tools" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  body, html {
+    margin: 0; padding: 0; height: 100%;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #007acc 0%, #00aaff 100%);
+    overflow-x: hidden;
+    color: #222;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    background-image:
+      url('https://upload.wikimedia.org/wikipedia/commons/8/87/PDF_file_icon.svg'),
+      url('https://upload.wikimedia.org/wikipedia/commons/0/0b/Microsoft_Word_2013_logo.svg');
+    background-repeat: no-repeat, no-repeat;
+    background-position: left center, right center;
+    background-size: 400px 400px, 400px 400px;
+    opacity: 0.05;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  main, header, footer {
+    position: relative;
+    z-index: 10;
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+  }
+
+  header h1 {
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 1.5px;
+    margin: 0;
+  }
+
+  .toggle-btn {
+    background: rgba(255 255 255 / 0.25);
+    border: none;
+    border-radius: 30px;
+    padding: 0.6rem 1.5rem;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    font-size: 1rem;
+    box-shadow: 0 0 8px rgba(255 255 255 / 0.3);
+    transition: background-color 0.3s ease;
+  }
+
+  .toggle-btn:hover {
+    background: rgba(255 255 255 / 0.45);
+  }
+
+  main {
+    max-width: 600px;
+    background: rgba(255 255 255 / 0.95);
+    margin: 2rem auto 3rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 122, 204, 0.3);
+    padding: 2.5rem 2rem 3rem;
+  }
+
+  main h2 {
+    color: #007acc;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: 0.8px;
+  }
+
+  label {
+    font-weight: 600;
+    font-size: 1.15rem;
+    display: block;
+    margin-bottom: 0.6rem;
+  }
+
+  input[type="file"] {
+    width: 100%;
+    padding: 0.6rem 1rem;
+    border: 2px solid #007acc;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    background: white;
+    outline-offset: 2px;
+  }
+
+  input[type="file"]:hover,
+  input[type="file"]:focus {
+    border-color: #005f99;
+    box-shadow: 0 0 8px #007acc;
+  }
+
+  button.convert-btn {
+    margin-top: 2rem;
+    width: 100%;
+    background: #007acc;
+    color: white;
+    font-weight: 700;
+    font-size: 1.3rem;
+    padding: 1rem 0;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0, 122, 204, 0.5);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  button.convert-btn:hover {
+    background: #005f99;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 122, 204, 0.7);
+  }
+
+  button.convert-btn:active {
+    transform: scale(0.98);
+  }
+
+  #output {
+    margin-top: 1.8rem;
+    font-size: 1.1rem;
+    text-align: center;
+    min-height: 2.2rem;
+    color: #007acc;
+    word-break: break-word;
+  }
+
+  .ads {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: rgba(255, 255, 255, 0.5); /* 50% opacity */
+    border-radius: 20px;
+    text-align: center;
+    font-style: italic;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    user-select: none;
+    transition: background-color 0.3s ease, background 0.3s ease;
+  }
+
+  .ads:hover {
+    background: rgba(221, 221, 221, 0.5);
+  }
+
+  .ads a {
+    color: #007acc;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  footer {
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+    padding-bottom: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .dark-mode {
+    background: linear-gradient(135deg, #121212 0%, #1a1a1a 100%);
+    color: #ddd;
+  }
+
+  .dark-mode main {
+    background: rgba(30 30 30 / 0.95);
+    box-shadow: 0 10px 30px rgba(51, 153, 255, 0.3);
+    color: #ddd;
+  }
+
+  .dark-mode header, .dark-mode footer {
+    color: #ddd;
+    text-shadow: none;
+  }
+
+  .dark-mode input[type="file"] {
+    background: #222;
+    border-color: #3399ff;
+    color: #ddd;
+  }
+
+  .dark-mode input[type="file"]:hover,
+  .dark-mode input[type="file"]:focus {
+    border-color: #66b3ff;
+    box-shadow: 0 0 8px #3399ff;
+  }
+
+  .dark-mode button.convert-btn {
+    background: #3399ff;
+    box-shadow: 0 6px 15px rgba(51, 153, 255, 0.5);
+  }
+  .dark-mode button.convert-btn:hover {
+    background: #66b3ff;
+  }
+
+  .dark-mode .ads {
+    background: rgba(40, 40, 40, 0.5);
+    color: #aaa;
+  }
+
+  .dark-mode .ads:hover {
+    background: rgba(85, 85, 85, 0.5);
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>PDF to Word Converter</h1>
+  <button class="toggle-btn" aria-label="Toggle dark mode" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+</header>
+
+<main role="main" aria-label="PDF to Word converter tool">
+  <h2>Convert your PDF to Editable Word Document</h2>
+  <form id="converter-form">
+    <label for="pdf-file">Choose a PDF file to convert:</label>
+    <input type="file" id="pdf-file" accept="application/pdf" required />
+    <button type="submit" class="convert-btn">Convert to Word</button>
+  </form>
+  <div id="output" aria-live="polite"></div>
+</main>
+
+<!-- Google AdSense Top Ad -->
+<div class="ads" role="banner" aria-label="Top Ad Banner">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-3472408264376368"
+       data-ad-slot="9670840372"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+
+<!-- Google AdSense Bottom Ad -->
+<div class="ads" role="banner" aria-label="Bottom Ad Banner">
+  <ins class="adsbygoogle"
+       style="display:block"
+       data-ad-client="ca-pub-3472408264376368"
+       data-ad-slot="9670840372"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+</div>
+
+<footer>
+  &copy; 2025 Free Online Tools | Your Website Name
+</footer>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+  }
+
+  document.getElementById('converter-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const fileInput = document.getElementById('pdf-file');
+    const output = document.getElementById('output');
+
+    if (fileInput.files.length === 0) {
+      output.textContent = 'Please select a PDF file first.';
+      return;
+    }
+
+    const fileName = fileInput.files[0].name;
+    output.innerHTML = `Converting <strong>${fileName}</strong>...<br><br>
+      <em>(This is a demo placeholder. Implement actual conversion backend or API.)</em>`;
+
+    setTimeout(() => {
+      output.innerHTML = `
+        Conversion complete!<br>
+        <a href="#" download="${fileName.replace(/\.pdf$/i, '.docx')}">Download your Word document</a>
+      `;
+    }, 2500);
+  });
+
+  (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</body>
+</html>

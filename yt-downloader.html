@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>YT Vdeo Dwnloader</title>
+<style>
+  body {
+    background: #121212;
+    color: #cc0000;
+    font-family: monospace, monospace;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .logo {
+    position: absolute;
+    opacity: 0.05;
+    width: 100px;
+    height: auto;
+    pointer-events: none;
+    user-select: none;
+  }
+  .logo1 { top: 10%; left: 5%; }
+  .logo2 { top: 30%; right: 10%; }
+  .logo3 { top: 50%; left: 20%; }
+  .logo4 { bottom: 20%; right: 15%; }
+  .logo5 { bottom: 10%; left: 40%; }
+
+  main {
+    background: rgba(30, 30, 30, 0.7);
+    border-radius: 10px;
+    padding: 2rem 3rem;
+    font-size: 3rem;
+    font-weight: bold;
+    user-select: none;
+    border-right: 4px solid #cc0000;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 15ch; /* Fixed width for "Coming Soon" */
+  }
+
+  /* Blinking caret */
+  @keyframes blink-caret {
+    0%, 100% { border-color: transparent; }
+    50% { border-color: #cc0000; }
+  }
+
+  /* We'll animate typing & deleting with JS, so just the caret blink here */
+  main {
+    animation: blink-caret 0.75s step-end infinite;
+  }
+</style>
+</head>
+<body>
+  <!-- Positioned logos -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" class="logo logo1" alt="YouTube Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" class="logo logo2" alt="YouTube Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" class="logo logo3" alt="YouTube Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" class="logo logo4" alt="YouTube Logo" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/YouTube_Logo_2017.svg" class="logo logo5" alt="YouTube Logo" />
+
+  <main id="typewriter"></main>
+
+  <script>
+    const text = "Coming Soon";
+    const typewriter = document.getElementById("typewriter");
+    let index = 0;
+    let isDeleting = false;
+    let delay = 150; // typing speed in ms
+    let pauseTime = 1000; // pause before deleting or typing
+
+    function type() {
+      if (!isDeleting) {
+        // Typing forward
+        index++;
+        typewriter.textContent = text.substring(0, index);
+        if (index === text.length) {
+          // Pause at full text
+          isDeleting = true;
+          setTimeout(type, pauseTime);
+          return;
+        }
+      } else {
+        // Deleting backward
+        index--;
+        typewriter.textContent = text.substring(0, index);
+        if (index === 0) {
+          // Pause at empty text
+          isDeleting = false;
+          setTimeout(type, pauseTime / 2);
+          return;
+        }
+      }
+      setTimeout(type, delay);
+    }
+
+    type();
+  </script>
+</body>
+</html>

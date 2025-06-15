@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Image to Base36 Hash</title>
+
+  <!-- Google AdSense script -->
+  <script data-ad-client="ca-pub-9670840372" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      color: #fff;
+      background: url('https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2') no-repeat center center / cover;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      flex-direction: column;
+    }
+
+    .container {
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="file"] {
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      height: 100px;
+      margin-top: 1rem;
+      border-radius: 5px;
+      border: none;
+      padding: 0.5rem;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      background: #00ffff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #00cccc;
+    }
+
+    /* Center ads */
+    .adsense-ad {
+      display: block;
+      margin: 0 auto 1rem auto;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top AdSense Ad -->
+  <ins class="adsbygoogle adsense-ad"
+       style="display:block; width:320px; height:50px;"
+       data-ad-client="ca-pub-9670840372"
+       data-ad-slot="9670840372"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <div class="container">
+    <h1>Image to Base36 Hash</h1>
+    <input type="file" id="imageInput" accept="image/*" />
+    <textarea id="output" placeholder="Your Base36 hash will appear here..." readonly></textarea>
+    <br />
+    <button onclick="copyBase36()">Copy Base36</button>
+  </div>
+
+  <!-- Bottom AdSense Ad -->
+  <ins class="adsbygoogle adsense-ad"
+       style="display:block; width:320px; height:50px;"
+       data-ad-client="ca-pub-9670840372"
+       data-ad-slot="9670840373"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+
+  <script>
+    document.getElementById('imageInput').addEventListener('change', async function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const arrayBuffer = await file.arrayBuffer();
+
+        // Generate SHA-256 hash
+        const hashBuffer = await crypto.subtle.digest('SHA-256', arrayBuffer);
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+
+        // Convert hash bytes to hex string
+        const hexString = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+        // Convert hex to BigInt, then to base36
+        const base36String = BigInt('0x' + hexString).toString(36).toUpperCase();
+
+        document.getElementById('output').value = base36String;
+      }
+    });
+
+    function copyBase36() {
+      const output = document.getElementById('output');
+      output.select();
+      document.execCommand('copy');
+      alert('Base36 string copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
